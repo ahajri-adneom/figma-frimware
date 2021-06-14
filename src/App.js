@@ -11,7 +11,7 @@ function App() {
         return false;
     }
 
-    const getData = (selectedMonth) => {
+    const getData = () => {
         fetch('data.json'
             , {
                 headers: {
