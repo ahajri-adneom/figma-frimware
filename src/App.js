@@ -33,9 +33,8 @@ function App() {
     }, [])
 
     return (
-        <div className="App">
-            <div className="container-fluid">
-                <div className="row">
+            <main className="container-fluid">
+                <section className="row">
                     <nav className="box mb-3" role="navigation" aria-label="Menu principal">
                         <ul className="p-2 d-flex align-items-center">
                             {
@@ -53,17 +52,14 @@ function App() {
                             }
                         </ul>
                     </nav>
-                    <main role="main">
-                        <div className=" box-content d-flex flex-column align-items-center">
-                            <h1>{selectedMonth?.month}</h1>
-                            <div className=" mt-3">
-                                {selectedMonth?.content}
-                            </div>
-                        </div>
-                    </main>
-                </div>
-            </div>
-        </div>
+                    <section id="details-month">
+                        <article className="box-content d-flex flex-column align-items-center">
+                            <header><h1>{selectedMonth?.contentTitle}</h1></header>
+                            <footer dangerouslySetInnerHTML={{ __html: selectedMonth?.content }}></footer>
+                        </article>
+                    </section>
+                </section>
+            </main>
     );
 }
 
