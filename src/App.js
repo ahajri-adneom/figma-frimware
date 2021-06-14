@@ -6,7 +6,6 @@ function App() {
     let [selectedMonth, updateSelectedMonth] = useState(null);
     const loadContent = (e, month) => {
         updateSelectedMonth(month)
-        console.log(e.target.offsetLeft);
         window.scrollTo(e.target.offsetLeft - 172, 0)
         return false;
     }
