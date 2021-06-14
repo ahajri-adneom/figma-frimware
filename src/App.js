@@ -2,11 +2,11 @@ import './App.scss';
 import {useEffect, useState} from "react";
 
 function App() {
-    window.scrollTo(0, 0);
     const [data, setData] = useState([]);
     let [selectedMonth, updateSelectedMonth] = useState(null);
     const loadContent = (e, month) => {
         updateSelectedMonth(month)
+        console.log(e.target.offsetLeft);
         window.scrollTo(e.target.offsetLeft - 172, 0)
         return false;
     }
@@ -29,12 +29,13 @@ function App() {
             });
     }
     useEffect(() => {
-        getData()
+        getData();
+        setTimeout(()=>{ window.scrollTo(0, 0)}, 300);
     }, [])
 
     return (
-            <main className="container-fluid">
-                <section className="row">
+            <main className="ml-3 pt-3">
+                <section>
                     <nav className="box mb-3" role="navigation" aria-label="Menu principal">
                         <ul className="p-2 d-flex align-items-center">
                             {
@@ -42,7 +43,7 @@ function App() {
                                     (month) =>
                                         <li  key={month.month} onClick={(e) => loadContent(e, month)}
                                             className="d-flex flex-column align-items-center">
-                                            <a href="/#">{month.month}</a>
+                                            <a href="/#">{month.month.substr(0,3)}</a>
                                             <img className="polygon"
                                                  alt="indication"
                                                  style={{visibility: month.month === selectedMonth?.month ? 'visible' : 'hidden'}}
@@ -52,7 +53,7 @@ function App() {
                             }
                         </ul>
                     </nav>
-                    <section id="details-month">
+                    <section className="mr-3" id="details-month">
                         <article className="box-content d-flex flex-column align-items-center">
                             <header><h1>{selectedMonth?.contentTitle}</h1></header>
                             <footer dangerouslySetInnerHTML={{ __html: selectedMonth?.content }}></footer>
